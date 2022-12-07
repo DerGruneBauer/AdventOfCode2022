@@ -1,0 +1,15 @@
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/bin/Debug/net6.0/AdventOfCode
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/bin/Debug/net6.0/AdventOfCode.deps.json
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/bin/Debug/net6.0/AdventOfCode.runtimeconfig.json
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/bin/Debug/net6.0/AdventOfCode.dll
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/bin/Debug/net6.0/ref/AdventOfCode.dll
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/bin/Debug/net6.0/AdventOfCode.pdb
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.csproj.AssemblyReference.cache
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.GeneratedMSBuildEditorConfig.editorconfig
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.AssemblyInfoInputs.cache
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.AssemblyInfo.cs
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.csproj.CoreCompileInputs.cache
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.dll
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/ref/AdventOfCode.dll
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.pdb
+/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/obj/Debug/net6.0/AdventOfCode.genruntimeconfig.cache
