@@ -15,10 +15,14 @@
             // dayTwo.SolveDayTwoPuzzlePartTwo();
             
             //Day Three Pt. 1 and Pt. 2
-            var dayThree = new DayThree.Puzzle();
+            //var dayThree = new DayThree.Puzzle();
             // dayThree.SolveDayThreePuzzlePartOne();
-            dayThree.SolveDayThreePuzzlePartTwo();
+            //dayThree.SolveDayThreePuzzlePartTwo();
 
+            //Day Four Pt. 1 and Pt. 2
+            //var dayFour = new DayFour.Puzzle();
+            // dayFour.SolveDayThreePuzzlePartOne();
+            //dayFour.SolveDayThreePuzzlePartTwo();
             
             Console.ReadLine();
         }
