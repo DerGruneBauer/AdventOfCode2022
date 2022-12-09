@@ -5,9 +5,15 @@
         static void Main()
         {
             //Day One Pt. 1 and Pt. 2
-            var dayOne = new DayOne.Puzzle();
-            dayOne.SolveDayOnePuzzlePartOne();
-            dayOne.SolveDayOnePuzzlePartTwo();
+            // var dayOne = new DayOne.Puzzle();
+            // dayOne.SolveDayOnePuzzlePartOne();
+            // dayOne.SolveDayOnePuzzlePartTwo();
+
+            //Day One Pt. 1 and Pt. 2
+            var dayTwo = new DayTwo.Puzzle();
+            dayTwo.SolveDayTwoPuzzlePartOne();
+            dayTwo.SolveDayTwoPuzzlePartTwo();
+            
             Console.ReadLine();
         }
     }
