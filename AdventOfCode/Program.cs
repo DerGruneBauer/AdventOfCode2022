@@ -21,8 +21,14 @@
 
             //Day Four Pt. 1 and Pt. 2
             //var dayFour = new DayFour.Puzzle();
-            // dayFour.SolveDayThreePuzzlePartOne();
-            //dayFour.SolveDayThreePuzzlePartTwo();
+            // dayFour.SolveDayFourPuzzlePartOne();
+            //dayFour.SolveDayFourPuzzlePartTwo();
+            
+            //Day Five Pt. 1 and Pt. 2
+            var dayFive = new DayFive.Puzzle();
+            // dayFive.SolveDayFivePuzzlePartOne();
+            dayFive.SolveDayFivePuzzlePartTwo();
+            
             
             Console.ReadLine();
         }

@@ -2,7 +2,7 @@ namespace AdventOfCode.DayFour;
 
 public class Puzzle
 {
-    public void SolveDayThreePuzzlePartTwo()
+    public void SolveDayFourPuzzlePartTwo()
     {
         const string path =
             "/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/DayFour/PuzzleInput";
@@ -23,7 +23,7 @@ public class Puzzle
         }
         Console.WriteLine($"There are {overlappingAssignmentPairs} overlapping pairs.");
     }
-    public void SolveDayThreePuzzlePartOne()
+    public void SolveDayFourPuzzlePartOne()
     {
         const string path =
             "/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/DayFour/PuzzleInput";
