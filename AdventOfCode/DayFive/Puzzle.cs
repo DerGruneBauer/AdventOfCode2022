@@ -24,54 +24,29 @@ public class Puzzle
 
     public void SolveDayFivePuzzlePartTwo()
     {
-        
-    }
-
-    private void ViewCrates(Dictionary<int, Stack<char>> stacks)
-    {
-        Console.WriteLine($"Stack One: {stacks[1].Peek()}");
-        Console.WriteLine($"Stack Two: {stacks[2].Peek()}");
-        Console.WriteLine($"Stack Three: {stacks[3].Peek()}");
-        Console.WriteLine($"Stack Four: {stacks[4].Peek()}");
-        Console.WriteLine($"Stack Five: {stacks[5].Peek()}");
-        Console.WriteLine($"Stack Six: {stacks[6].Peek()}");
-        Console.WriteLine($"Stack Seven: {stacks[7].Peek()}");
-        Console.WriteLine($"Stack Eight: {stacks[8].Peek()}");
-        Console.WriteLine($"Stack Nine: {stacks[9].Peek()}");
-    }
-    private void MoveCrates(ref Dictionary<int, Stack<char>> stacks, int numCratesToMove, int stackMoveFrom, int stackMoveTo)
-    {
-        for (var i = 0; i < numCratesToMove; i++)
+        var stacks = TransformTextFile();
+        var listsDictionary = new Dictionary<int, List<char>>();
+        for (var i = stacks.Length-1; i >= 0 ; i--)
         {
-            var savedCrate = stacks[stackMoveFrom].Pop();
-            stacks[stackMoveTo].Push(savedCrate);
-        }
-    }
-    private void ReadInstructions(ref Dictionary<int, Stack<char>> stacks)
-    {
-        const string path =
-            "/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/DayFive/PuzzleInput";
-        string? line;
-        using var reader = new StreamReader(path);
-        int counter = 0;
-        
-        int numOfCratesMoved = 0;
-        int stackMoveFrom;
-        int stackMoveTo;
-        
-        while ((line = reader.ReadLine()) != null)
-        {
-            counter++;
-
-            if (counter >= 11)
+            if (stacks[i] != ' ' && stacks[i] != '\n')
             {
-                numOfCratesMoved = int.Parse(GetNumberOfCratesMoved(line));
-                stackMoveFrom = int.Parse(GetStackToMoveFrom(line));
-                stackMoveTo = int.Parse(GetStackToMoveTo(line));
-                MoveCrates(ref stacks, numOfCratesMoved, stackMoveFrom, stackMoveTo);
+                var stackNumber = GetStackNumber(i);
+                AddOrUpdateToList(listsDictionary, stackNumber, stacks[i]);
             }
+
+            
         }
+        //this is the "top" of the list
+        //listsDictionary[1][6]
+        Console.WriteLine(listsDictionary[1].Last());
+        //this is the "bottom" of the list
+        //listsDictionary[1][0]
+        ReadInstructionsPartTwo(ref listsDictionary);
+        
+        // ViewCratesPartTwo(listsDictionary);
+
     }
+    
     private static string GetStackToMoveTo(string line)
     {
         if (line[17] == ' ')
@@ -101,28 +76,6 @@ public class Puzzle
         number += line[6].ToString();
 
         return number;
-    }
-    private static int GetStackNumber(int i)
-    {
-        int stackNumber;
-        if (i.ToString().Length == 1)
-        {
-            stackNumber = i;
-        }
-        else
-        {
-            var stringIndex = i.ToString()[1];
-            stackNumber = stringIndex - '0';
-        }
-
-        return stackNumber+1;
-    }
-    private static void AddOrUpdateToStack(Dictionary<int, Stack<char>> targetDictionary, int key, char entry)
-    {
-        if (!targetDictionary.ContainsKey(key))
-            targetDictionary.Add(key, new Stack<char>());
-
-        targetDictionary[key].Push(entry);
     }
     private static string TransformTextFile()
     {
@@ -173,5 +126,155 @@ public class Puzzle
         }
 
         return stacksWithNoSpaces;
+    }
+    private static int GetStackNumber(int i)
+    {
+        int stackNumber;
+        if (i.ToString().Length == 1)
+        {
+            stackNumber = i;
+        }
+        else
+        {
+            var stringIndex = i.ToString()[1];
+            stackNumber = stringIndex - '0';
+        }
+
+        return stackNumber+1;
+    }
+    
+    //Part Two
+    private void ReadInstructionsPartTwo(ref Dictionary<int, List<char>> stacks)
+    {
+        const string path =
+            "/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/DayFive/PuzzleInput";
+        string? line;
+        using var reader = new StreamReader(path);
+        int counter = 0;
+        
+        int numOfCratesMoved = 0;
+        int stackMoveFrom;
+        int stackMoveTo;
+        
+        while ((line = reader.ReadLine()) != null)
+        {
+            counter++;
+
+            if (counter == 12)
+            {
+                numOfCratesMoved = int.Parse(GetNumberOfCratesMoved(line));
+                stackMoveFrom = int.Parse(GetStackToMoveFrom(line));
+                stackMoveTo = int.Parse(GetStackToMoveTo(line));
+                MoveCratesPartTwo(ref stacks, numOfCratesMoved, stackMoveFrom, stackMoveTo);
+            }
+        }
+    }
+    private void MoveCratesPartTwo(ref Dictionary<int, List<char>> stacks, int numCratesToMove, int stackMoveFrom, int stackMoveTo)
+    {
+        // foreach (var character in stacks[stackMoveTo])
+        // {
+        //     Console.WriteLine(character);
+        // }
+        //
+        // Console.WriteLine("------------");
+        char[] savedCrates = new char[numCratesToMove];
+        for (var i = 0; i < numCratesToMove; i++)
+        {
+            int count = stacks[stackMoveFrom].Count-1;
+            savedCrates[i] = stacks[stackMoveFrom][count-i];
+        }
+        for (var i = 0; i < numCratesToMove; i++)
+        {
+            int count = stacks[stackMoveFrom].Count-1;
+            stacks[stackMoveFrom].RemoveAt(count);
+        }
+        
+        for (var i = numCratesToMove-1; i >= 0; i--)
+        {
+            stacks[stackMoveTo].Add(savedCrates[i]);
+        }
+
+        
+        //way that its being inserted needs to be flipped
+        // foreach (var character in stacks[stackMoveTo])
+        // {
+        //     Console.WriteLine(character);
+        // }
+    }
+
+    private static void AddOrUpdateToList(Dictionary<int, List<char>> targetDictionary, int key, char entry)
+    {
+        if (!targetDictionary.ContainsKey(key))
+        {
+            targetDictionary.Add(key, new List<char>());
+        }
+
+        targetDictionary[key].Add(entry);
+    }
+    private void ViewCratesPartTwo(Dictionary<int, List<char>> stacks)
+    {
+        Console.WriteLine($"Stack One: {stacks[1].Last()}");
+        Console.WriteLine($"Stack Two: {stacks[2].Last()}");
+        Console.WriteLine($"Stack Three: {stacks[3].Last()}");
+        Console.WriteLine($"Stack Four: {stacks[4].Last()}");
+        Console.WriteLine($"Stack Five: {stacks[5].Last()}");
+        Console.WriteLine($"Stack Six: {stacks[6].Last()}");
+        Console.WriteLine($"Stack Seven: {stacks[7].Last()}");
+        Console.WriteLine($"Stack Eight: {stacks[8].Last()}");
+        Console.WriteLine($"Stack Nine: {stacks[9].Last()}");
+    }
+
+    //Part One
+    private void ViewCrates(Dictionary<int, Stack<char>> stacks)
+    {
+        Console.WriteLine($"Stack One: {stacks[1].Peek()}");
+        Console.WriteLine($"Stack Two: {stacks[2].Peek()}");
+        Console.WriteLine($"Stack Three: {stacks[3].Peek()}");
+        Console.WriteLine($"Stack Four: {stacks[4].Peek()}");
+        Console.WriteLine($"Stack Five: {stacks[5].Peek()}");
+        Console.WriteLine($"Stack Six: {stacks[6].Peek()}");
+        Console.WriteLine($"Stack Seven: {stacks[7].Peek()}");
+        Console.WriteLine($"Stack Eight: {stacks[8].Peek()}");
+        Console.WriteLine($"Stack Nine: {stacks[9].Peek()}");
+    }
+    private void MoveCrates(ref Dictionary<int, Stack<char>> stacks, int numCratesToMove, int stackMoveFrom, int stackMoveTo)
+    {
+        for (var i = 0; i < numCratesToMove; i++)
+        {
+            var savedCrate = stacks[stackMoveFrom].Pop();
+            stacks[stackMoveTo].Push(savedCrate);
+        }
+    }
+    private void ReadInstructions(ref Dictionary<int, Stack<char>> stacks)
+    {
+        const string path =
+            "/Users/Remington.Greenbauer/Documents/Fun Code/AdventOfCode/AdventOfCode/DayFive/PuzzleInput";
+        string? line;
+        using var reader = new StreamReader(path);
+        int counter = 0;
+        
+        int numOfCratesMoved = 0;
+        int stackMoveFrom;
+        int stackMoveTo;
+        
+        while ((line = reader.ReadLine()) != null)
+        {
+            counter++;
+
+            if (counter >= 11)
+            {
+                numOfCratesMoved = int.Parse(GetNumberOfCratesMoved(line));
+                stackMoveFrom = int.Parse(GetStackToMoveFrom(line));
+                stackMoveTo = int.Parse(GetStackToMoveTo(line));
+                MoveCrates(ref stacks, numOfCratesMoved, stackMoveFrom, stackMoveTo);
+            }
+        }
+    }
+    private static void AddOrUpdateToStack(Dictionary<int, Stack<char>> targetDictionary, int key, char entry)
+    {
+        if (!targetDictionary.ContainsKey(key))
+            targetDictionary.Add(key, new Stack<char>());
+
+        targetDictionary[key].Push(entry);
     }
 }
